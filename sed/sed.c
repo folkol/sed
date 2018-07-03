@@ -48,6 +48,9 @@ bool unbuffered = false;
 /* If set, don't write out the line unless explicitly told to */
 bool no_default_output = false;
 
+/* If set, print command and buffer content for each cycle */
+bool verbose_debug = false;
+
 /* If set, reset line counts on every new file. */
 bool separate_files = false;
 
@@ -192,14 +195,15 @@ int
 main (int argc, char **argv)
 {
 #ifdef REG_PERL
-#define SHORTOPTS "bsnrzRuEe:f:l:i::V:"
+#define SHORTOPTS "dbsnrzRuEe:f:l:i::V:"
 #else
-#define SHORTOPTS "bsnrzuEe:f:l:i::V:"
+#define SHORTOPTS "dbsnrzuEe:f:l:i::V:"
 #endif
 
   enum { SANDBOX_OPTION = CHAR_MAX+1 };
 
   static const struct option longopts[] = {
+    {"debug", 0, NULL, 'd'},
     {"binary", 0, NULL, 'b'},
     {"regexp-extended", 0, NULL, 'r'},
 #ifdef REG_PERL
@@ -271,6 +275,9 @@ main (int argc, char **argv)
     {
       switch (opt)
         {
+        case 'd':
+          verbose_debug = true;
+          break;
         case 'n':
           no_default_output = true;
           break;

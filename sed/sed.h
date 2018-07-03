@@ -219,6 +219,9 @@ extern bool unbuffered;
 /* If set, don't write out the line unless explicitly told to. */
 extern bool no_default_output;
 
+/* If set, print command and buffer content for each cycle */
+extern bool verbose_debug = false;
+
 /* If set, reset line counts on every new file. */
 extern bool separate_files;
 

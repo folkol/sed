@@ -1272,6 +1272,9 @@ translate_mb (char *const *trans)
     }
 }
 
+#define ANSI_COLOR_YELLOW  "\x1b[33m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
+
 /* Execute the program `vec' on the current input line.
    Return exit status if caller should quit, -1 otherwise. */
 static int
@@ -1284,8 +1287,17 @@ execute_program(struct vector *vec, struct input *input)
   end_cmd = vec->v + vec->v_length;
   while (cur_cmd < end_cmd)
     {
-      if (match_address_p(cur_cmd, input) != cur_cmd->addr_bang)
+      int active_addr = (match_address_p(cur_cmd, input) != cur_cmd->addr_bang);
+      if(verbose_debug) {
+          fprintf(stderr, ANSI_COLOR_YELLOW"COMM: %c %s\n", cur_cmd->cmd, active_addr ? "(ACTIVE)" : "");
+          fprintf(stderr, "LINE: %.*s\n", (int) line.length, line.active);
+      }
+      if (active_addr)
         {
+          if(verbose_debug) {
+            printf("BUFF: %.*s\n", (int) line.length, buffer.active);
+            printf("HOLD: %.*s\n"ANSI_COLOR_RESET, (int) line.length, hold.active);
+          }
           switch (cur_cmd->cmd)
             {
             case 'a':
