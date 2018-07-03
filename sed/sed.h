@@ -220,7 +220,7 @@ extern bool unbuffered;
 extern bool no_default_output;
 
 /* If set, print command and buffer content for each cycle */
-extern bool verbose_debug = false;
+extern bool verbose_debug;
 
 /* If set, reset line counts on every new file. */
 extern bool separate_files;
