@@ -1,3 +1,19 @@
+# Hacked sed
+
+Cloned from: git://git.sv.gnu.org/sed
+
+Added -d/--debug command line option for help with debugging sed programs.
+
+(Binary for mac in sed/sed.mac)
+
+
+
+
+------
+
+
+
+
 This is the GNU implementation of sed, the Unix stream editor.
 
 GNU Sed website: https://www.gnu.org/software/sed/
