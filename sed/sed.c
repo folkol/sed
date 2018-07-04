@@ -138,6 +138,8 @@ usage(int status)
 Usage: %s [OPTION]... {script-only-if-no-other-script} [input-file]...\n\
 \n"), myname);
 
+  fprintf(out, _("  -d, --debug\n\
+                 prints command and buffer content for each cycle\n"));
   fprintf(out, _("  -n, --quiet, --silent\n\
                  suppress automatic printing of pattern space\n"));
   fprintf(out, _("  -e script, --expression=script\n\
